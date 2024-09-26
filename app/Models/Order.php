@@ -15,6 +15,9 @@ use App\Models\{
     OrderProductBond
 };
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCreate;
+
 class Order extends Model
 {
     use HasFactory,
@@ -28,6 +31,18 @@ class Order extends Model
     protected $fillable = [
         'client_id',
     ];
+
+    /**
+     * Send email on crate a order
+     */
+    protected static function booted(): void
+    {
+        static::created(function (Order $order) {
+            $client = $order->client()->first();
+            Mail::to($client->email)
+                ->send(new OrderCreate($client->toArray()));
+        });
+    }
 
     /**
      * @return BelongsTo

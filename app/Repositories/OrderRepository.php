@@ -51,7 +51,7 @@ class OrderRepository extends RepositoryBase
     public function createOrder(array $data): JsonResponse
     {
         try {
-            $order = $this->store($data);
+            $order = Order::create($data);
             $toReturn = $this->insertProductOnOrder($order, $data['products']);
             return response()->json($toReturn, Response::HTTP_CREATED);
         } catch (Exception $e) {
