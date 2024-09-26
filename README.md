@@ -36,5 +36,5 @@ O fluxo consiste da seguinte maneira:
 ° Um cliente poderá ter vários pedidos
 ° Um pedido poderá ter vário produtos
 
-O email desparado para o cliente poderá ser vericado em:
+O email desparado para o cliente poderá ser vericado em ambiente de teste:
 `comerc/storage/logs/laravel.log`
